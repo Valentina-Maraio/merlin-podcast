@@ -1,9 +1,11 @@
 import React from 'react'
+import PodcastCard from './PodcastCard'
 
 const AllPodcast = () => {
   return (
     <div>
-        <h5>AllPodcast</h5>
+        <h3>AllPodcast</h3>
+        <PodcastCard/>
     </div>
   )
 }

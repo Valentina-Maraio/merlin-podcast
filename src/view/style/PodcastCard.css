@@ -1,0 +1,10 @@
+.immagine{
+    height: 50px;
+    width: 50px;
+    padding: 10%;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    z-index: 999;
+}
