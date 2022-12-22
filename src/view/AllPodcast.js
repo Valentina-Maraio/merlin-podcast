@@ -1,13 +1,19 @@
-import React from 'react'
-import PodcastCard from './PodcastCard'
+import React from "react";
+import PodcastCard from "./PodcastCard";
+import { AllPodcastProvider } from "../context/AllContext";
+
+//ui
+import { Divider } from "@nextui-org/react";
 
 const AllPodcast = () => {
   return (
     <div>
-        <h3>AllPodcast</h3>
-        <PodcastCard/>
+      <Divider/>
+      <AllPodcastProvider>
+        <PodcastCard />
+      </AllPodcastProvider>
     </div>
-  )
-}
+  );
+};
 
-export default AllPodcast
+export default AllPodcast;
