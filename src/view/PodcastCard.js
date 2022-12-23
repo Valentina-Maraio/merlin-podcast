@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 //data from context
 import { AllPodcastContext } from "../context/AllContext";
+import PodcastDetailsCard from "../component/PodcastDetailsCard";
 
 //style
 import "./style/PodcastCard.css";
-import { Grid, Card, Col, Row, Button, Text } from "@nextui-org/react";
+import { Grid, Card, Col, Row, Text } from "@nextui-org/react";
 
 const PodcastCard = () => {
   const [allPods] = useContext(AllPodcastContext);
+  const [visible, setVisible] = React.useState(false);
 
   return (
     <>
@@ -48,16 +50,14 @@ const PodcastCard = () => {
                     </Col>
                     <Col>
                       <Row justify="flex-end">
-                        <Button flat auto rounded color="secondary">
-                          <Text
-                            css={{ color: "inherit" }}
-                            size={12}
-                            weight="bold"
-                            transform="uppercase"
-                          >
-                            INFO
-                          </Text>
-                        </Button>
+                        <PodcastDetailsCard 
+                        onClose={() => setVisible(false)}
+                        show={visible === entry}
+                        entry={entry["title"].label}
+                        photo={entry["im:image"][2].label}
+                        height={entry["im:image"].height}
+                        summary={entry["summary"].label}
+                        />
                       </Row>
                     </Col>
                   </Row>
