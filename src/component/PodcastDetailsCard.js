@@ -13,7 +13,7 @@ const PodcastDetailsCard = (props) => {
 
   return (
     <>
-      <Modal fullScreen open={visible} onClose={closeHandler}>
+      <Modal open={visible} onClose={closeHandler}>
         <Modal.Header>
           <Text size={18}>{props.entry}</Text>
         </Modal.Header>
@@ -25,7 +25,9 @@ const PodcastDetailsCard = (props) => {
             objectFit="fit"
             alt="Card example background"
           />
-          <Text>{props.summary}</Text>
+          <Text>Title: {props.title}</Text>
+          <Text>Author: {props.author}</Text>
+          <Text>Summary: {props.sums}</Text>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={() => setVisible(false)}>Close</Button>

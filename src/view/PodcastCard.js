@@ -1,26 +1,16 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 //data from context
 import { AllPodcastContext } from "../context/AllContext";
 //style
 import "./style/PodcastCard.css";
-import { Grid, Card, Col, Row, Text, Input, Button } from "@nextui-org/react";
+import { Grid, Card, Col, Row, Text, Input } from "@nextui-org/react";
+//components
+import PodcastDetailsCard from '../component/PodcastDetailsCard'
+
 
 const PodcastCard = () => {
   const [allPods] = useContext(AllPodcastContext);
   const [search, setSearch] = useState("");
-  const navigate = useNavigate();
-  const id = "Valentina";
-
-  function podcastInfo() {
-    navigate("/podcast_datail", {
-      state: {
-        id: id,
-      },
-
-    });
-  }
-
 
   return (
     <>
@@ -84,7 +74,13 @@ const PodcastCard = () => {
                       </Col>
                       <Col>
                         <Row justify="flex-end">
-                          <Button onPress={podcastInfo}>INFO</Button>
+                          <PodcastDetailsCard
+                          title={entry["title"].label}
+                          author={entry["im:name"].label}
+                          photo={entry["im:image"][2].label}
+                          height={entry["im:image"].height}
+                          sums={entry['summary'].label}
+                          />
                         </Row>
                       </Col>
                     </Row>
