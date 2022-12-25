@@ -15,7 +15,6 @@ export const AllPodcastProvider = ({ children }) => {
     try {
       const response = await axios.get(merlinPodcast.allPodcast);
       setAllPods(response.data.feed);
-      console.log(response.data.feed);
     } catch (error) {
       console.log(error);
     }

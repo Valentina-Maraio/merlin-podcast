@@ -1,19 +1,31 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 //data from context
 import { AllPodcastContext } from "../context/AllContext";
-import PodcastDetailsCard from "../component/PodcastDetailsCard";
 //style
 import "./style/PodcastCard.css";
-import { Grid, Card, Col, Row, Text, Input } from "@nextui-org/react";
+import { Grid, Card, Col, Row, Text, Input, Button } from "@nextui-org/react";
 
 const PodcastCard = () => {
   const [allPods] = useContext(AllPodcastContext);
-  const [visible, setVisible] = React.useState(false);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const id = "Valentina";
+
+  function podcastInfo() {
+    navigate("/podcast_datail", {
+      state: {
+        id: id,
+      },
+
+    });
+  }
+
 
   return (
     <>
       <div>
+        <br />
         <Input
           clearable
           contentLeftStyling={true}
@@ -25,18 +37,20 @@ const PodcastCard = () => {
           }}
           placeholder="Search..."
           onChange={(e) => setSearch(e.target.value)}
+          aria-label="Search"
         ></Input>
       </div>
       <Grid.Container gap={2} justify="center">
         {allPods?.entry
           ?.filter((entry) => {
-            return search.toLowerCase() === ''
-            ? entry 
-            : entry["im:name"].label.toLowerCase().includes(search) || entry["title"].label.toLowerCase().includes(search)
+            return search.toLowerCase() === ""
+              ? entry
+              : entry["im:name"].label.toLowerCase().includes(search) ||
+                  entry["title"].label.toLowerCase().includes(search);
           })
           .map((entry) => {
             return (
-              <Grid xs={12} sm={4}>
+              <Grid key={entry["id"]["attributes"]["im:id"]} xs={12} sm={4}>
                 <Card css={{ w: "100%", h: "400px" }}>
                   <Card.Body css={{ p: 0 }}>
                     <Card.Image
@@ -70,14 +84,7 @@ const PodcastCard = () => {
                       </Col>
                       <Col>
                         <Row justify="flex-end">
-                          <PodcastDetailsCard
-                            onClose={() => setVisible(false)}
-                            show={visible === entry}
-                            entry={entry["title"].label}
-                            photo={entry["im:image"][2].label}
-                            height={entry["im:image"].height}
-                            summary={entry["summary"].label}
-                          />
+                          <Button onPress={podcastInfo}>INFO</Button>
                         </Row>
                       </Col>
                     </Row>
